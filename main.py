@@ -142,11 +142,12 @@ class AppMain(App):
     th_obj = ""
 
     def build(self):
-        self.que = Manager().Queue()
-        self.que_to_flask = Manager().Queue()
+        # 빈창 띄우는 범인: flask - 어케 해결하지?
+        # self.que = Manager().Queue()
+        # self.que_to_flask = Manager().Queue()
 
-        self.flask_proc = Process(target=flaskRun, args=(self.que, self.que_to_flask))
-        self.flask_proc.start()
+        # self.flask_proc = Process(target=flaskRun, args=(self.que, self.que_to_flask))
+        # self.flask_proc.start()
 
         f = []
         f.append(open("layout/main.kv", encoding='utf8'))
