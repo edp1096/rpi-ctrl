@@ -182,8 +182,8 @@ class AppMain(App):
         self.th_obj.is_running = False
 
         # 종료시 플라스크 종료
-        self.flask_proc.terminate()
-        self.flask_proc.join()
+        # self.flask_proc.terminate()
+        # self.flask_proc.join()
 
     def triggerThreads(self, mode="none"):
         if self.th_obj != "":
