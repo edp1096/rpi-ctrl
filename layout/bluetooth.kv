@@ -1,0 +1,104 @@
+#:kivy 1.10.0
+<ScreenBluetooth>:
+    name: 'Bluetooth'
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: title
+            size_hint_y: 0.2
+            text: '블루투스'
+        BoxLayout:
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                BoxLayout:
+                    size_hint_y: 0.1
+                    Button:
+                        text: '컨트롤러 목록'
+                        on_release:
+                            root.getControllerList()
+                    Button:
+                        text: '디바이스 스캔'
+                        on_release:
+                            root.doDeviceScan()
+                    Button:
+                        text: '기기 노출'
+                        on_release:
+                            root.setDiscoverable()
+
+                Label:
+                    size_hint_y: 0.2
+                    id: bluetooth_controllers
+                    text: ''
+                BoxLayout:
+                    size_hint_y: 0.1
+                    Button:
+                        text: '페어링된 기기'
+                        on_release:
+                            root.getPairedList()
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: 0.6
+                    Button:
+                        text: '시리얼 송신 테스트'
+                        on_release:
+                            root.sendSerialData("Hello World^_^_^_^")
+                    Button:
+                        text: '통신 모드 시작'
+                        on_release:
+                            root.rfcommStart()
+                    Button:
+                        text: '데이타 보내기'
+                        on_release:
+                            root.sendData("Hello World ^-^ T-T")
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: 0.3
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Label:
+                            text: '선택한 기기: '
+                    BoxLayout:
+                        orientation: 'vertical'
+                        Label:
+                            id: selected_bt_name
+                            text: ''
+                        Label:
+                            id: selected_bt_mac
+                            text: ''
+
+                Label:
+                    size_hint_y: 0.2
+                    text: '기기 목록'
+
+                RecycleView:
+                    id: blt_device_list
+                    size_hint_y: 0.5
+                    scroll_type: ['bars', 'content']
+                    scroll_wheel_distance: dp(10)
+                    bar_width: dp(10)
+                    viewclass: 'BtRow'
+                    RecycleBoxLayout:
+                        default_size: None, dp(36)
+                        default_size_hint: 1, None
+                        size_hint_y: None
+                        height: self.minimum_height
+                        orientation: 'vertical'
+                        spacing: dp(2)
+
+    # 메뉴
+    FloatLayout:
+        id: menu
+        size_hint_x: 1
+        Menu:
+    FloatLayout:
+        id: screen_keyboard
+        size_hint_x: 1
+        ScreenKeyboard:
+            pos: self.parent.x + 999, self.parent.y
+
+

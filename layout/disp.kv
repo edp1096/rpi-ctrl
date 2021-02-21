@@ -1,0 +1,30 @@
+#:kivy 1.10.0
+<ScreenDisp>:
+    name: 'Disp'
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: '화면 - RPI 공식 7인치 전용'
+            Label:
+                id: disp_off
+                text: ''
+            Label:
+                id: brightness
+                text: '{}'.format(round(sl_brightness.value))
+        BoxLayout:
+            Slider:
+                id: sl_brightness
+                size_hint_x: self.parent.width
+                width: '48dp'
+                value: 50
+                on_value:
+                    brightness.value = self.value
+                    root.setBrightness(self.value)
+
+    # 메뉴
+    FloatLayout:
+        id: menu
+        size_hint_x: 1
+        Menu:

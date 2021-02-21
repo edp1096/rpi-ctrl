@@ -1,0 +1,35 @@
+#:kivy 1.10.0
+<ApRow@BoxLayout>:
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+            # rgba: 0.5, 0.5, 0.5, 1
+            rgba: 0.5, 0.5, 0.5, 0
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    ap_name: ''
+
+    BoxLayout:
+        orientation: 'horizontal'
+        Label:
+            size_hint_x: 0.6
+            color: 3, 3, 3, 1
+            text: root.ap_name
+            text_size: (self.width * 0.8, self.parent.height / 2 - self.height / 2)
+        Button:
+            size_hint_x: 0.4
+            text: "선택"
+            on_press:
+                app.scm.children[0].ids.selected_ap.text=root.ap_name
+
+    # 가로 구분선
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgba: 0.5, 0.5, 0.5, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        size_hint_y: 0.01

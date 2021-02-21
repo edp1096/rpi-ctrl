@@ -1,0 +1,76 @@
+#:kivy 1.10.0
+# 메뉴
+<Menu@FloatLayout>:
+    id: menu
+    size_hint: 1, 1
+    pos: 800, 0
+    # 메뉴 호출 버튼
+    BoxLayout:
+        id: menu_btn
+        pos: self.parent.x - 62, self.parent.y
+        size_hint: 0.08, 1
+        orientation: 'vertical'
+
+        BoxLayout:
+            size_hint_y: 0.8
+
+        Button:
+            background_color: 0.1,0.5,0.3,0.5
+            # background_color: 0.1,0.5,0.3,0
+            text: '메뉴'
+            on_release:
+                app.openMenu()
+
+        BoxLayout:
+            size_hint_y: 0.8
+
+    # 빈 공간. 클릭하면 메뉴 사라지게 하는 용도
+    BoxLayout:
+        pos: self.parent.pos
+        size_hint: 0.75, 1
+        Button:
+            background_color: 0,0,0,0.2
+            # on_release:
+                # app.closeMenuByClick()
+
+    # 메뉴
+    BoxLayout:
+        orientation: 'vertical'
+        pos: self.parent.x + 600, self.parent.y
+        size_hint: 0.25, 1
+        Button:
+            font_size: 30
+            text: '홈'
+            halign: 'right'
+            valign: 'middle'
+            on_release:
+                app.root.current='Home'
+                app.closeMenu()
+
+        Button:
+            font_size: 30
+            text: '네트워크'
+            halign: 'right'
+            valign: 'middle'
+            on_release:
+                app.root.current='Ether'
+                app.closeMenu()
+
+        Button:
+            font_size: 30
+            text: '블루투스'
+            halign: 'right'
+            valign: 'middle'
+            on_release:
+                app.root.current='Bluetooth'
+                app.closeMenu()
+
+        Button:
+            font_size: 30
+            text: '화면'
+            halign: 'right'
+            valign: 'middle'
+            on_release:
+                app.root.current='Disp'
+                app.closeMenu()
+

@@ -1,0 +1,134 @@
+#:kivy 1.10.0
+<ScreenEther>:
+    name: 'Ether'
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            size_hint_y: 0.2
+            text: '이더넷, 와이파이'
+        BoxLayout:
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                Button:
+                    size_hint_y: 0.1
+                    text: 'IP정보 갱신'
+                    on_release:
+                        root.showIpList()
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: 0.1
+                    Label:
+                        text: 'Ethernet IP'
+                    Label:
+                        id: ether_eth_ip
+                        text: ''
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: 0.1
+                    Label:
+                        text: 'Wifi IP'
+                    Label:
+                        id: ether_wifi_ip
+                        text: ''
+                BoxLayout:
+                    size_hint_y: 0.1
+                    Button:
+                        text: '키보드 열기'
+                        on_press:
+                            root.toggleKeyboard("show")
+                    Button:
+                        text: '키보드 닫기'
+                        on_press:
+                            root.toggleKeyboard("hide")
+                BoxLayout:
+                    size_hint_y: 0.1
+                    Button:
+                        text: 'WIFI 켜기'
+                        on_press:
+                            root.wifiOnOff("on")
+                    Button:
+                        text: 'WIFI 끄기'
+                        on_press:
+                            root.wifiOnOff("off")
+                BoxLayout:
+                    size_hint_y: 0.5
+
+            BoxLayout:
+                orientation: 'vertical'
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: 0.1
+                    Button:
+                        text: '목록 갱신'
+                        on_release:
+                            root.reloadApList()
+                    Button:
+                        text: 'Wifi 연결'
+                        on_release:
+                            root.connectWifi()
+                    Button:
+                        text: '연결 끊기'
+                        on_release:
+                            root.disconnectWifi()
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: 0.2
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Label:
+                            size_hint_x: 0.3
+                            text: '선택한 AP: '
+                        Label:
+                            id: selected_ap
+                            size_hint_x: 0.7
+                            text: ''
+
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Label:
+                            size_hint_x: 0.3
+                            text: '공유기 비번: '
+                        BoxLayout:
+                            size_hint_x: 0.7
+                            size_hint_y: None
+                            TextInput:
+                                id: ap_pwd
+                                size_hint_y: None
+                                text: ''
+                                pos_hint: {'center_y': 0.2}
+                                multiline: False
+                                height: self.minimum_height
+
+                Label:
+                    size_hint_y: 0.2
+                    text: 'AP 목록'
+
+                RecycleView:
+                    id: ether_ap_list
+                    size_hint_y: 0.5
+                    scroll_type: ['bars', 'content']
+                    scroll_wheel_distance: dp(10)
+                    bar_width: dp(10)
+                    viewclass: 'ApRow'
+                    RecycleBoxLayout:
+                        default_size: None, dp(36)
+                        default_size_hint: 1, None
+                        size_hint_y: None
+                        height: self.minimum_height
+                        orientation: 'vertical'
+                        spacing: dp(2)
+
+    # 메뉴
+    FloatLayout:
+        id: menu
+        size_hint_x: 1
+        Menu:
+    FloatLayout:
+        id: screen_keyboard
+        size_hint_x: 1
+        ScreenKeyboard:
+            pos: self.parent.x + 999, self.parent.y
+
+

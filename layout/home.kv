@@ -1,0 +1,26 @@
+#:kivy 1.10.0
+<ScreenHome>:
+    name: 'Home'
+    BoxLayout:
+        orientation: 'vertical'
+        text: '홈'
+        BoxLayout:
+            Label:
+                font_size: 30
+                text: '첫 화면'
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                id: current_date
+                font_size: 30
+                text: ''
+            Label:
+                id: current_time
+                font_size: 30
+                text: ''
+
+    # 메뉴
+    FloatLayout:
+        id: menu
+        size_hint_x: 1
+        Menu:
